@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Renta de Películas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+  <script>
+    // Array para almacenar las películas disponibles
+    var peliculasDisponibles = [
+     
+      { titulo: "Titanic", genero: "Drama" },
+      { titulo: "Gran Turismo", genero: "Acción" },
+      { titulo: "Saw V", genero: "Terror" },
+      { titulo: "WilliamsF1", genero: "Documental" },
+      { titulo: "Son como niños", genero: "Comedia" },
+      // Agrega más películas aquí
+    ];
+
+    // Función para mostrar las películas disponibles en la página
+    function mostrarPeliculas() {
+      var listaPeliculas = document.getElementById("peliculas");
+
+      for (var i = 0; i < peliculasDisponibles.length; i++) {
+        var pelicula = peliculasDisponibles[i];
+        var peliculaItem = document.createElement("li");
+        peliculaItem.textContent = pelicula.titulo + " - " + pelicula.genero;
+        listaPeliculas.appendChild(peliculaItem);
+      }
+    }
+
+    // Función para procesar el formulario de renta de película
+    function rentarPelicula() {
+      var tituloPelicula = document.getElementById("titulo").value;
+      var generoPelicula = document.getElementById("genero").value;
+
+      // Verifica si la película está disponible
+      for (var i = 0; i < peliculasDisponibles.length; i++) {
+        var pelicula = peliculasDisponibles[i];
+        if (pelicula.titulo === tituloPelicula && pelicula.genero === generoPelicula) {
+          // Película encontrada y rentada con éxito
+          alert("¡Película rentada con éxito!");
+          // Agrega aquí tu lógica adicional, como actualizar la base de datos, etc.
+          return;
+        }
+      }
+
+      // Si no se encontró la película, muestra un mensaje de error
+      alert("La película seleccionada no está disponible.");
+    }
+  </script>
+</head>
+<body>
+  <h1>Renta de Películas</h1>
+
+  <h2>Películas Disponibles:</h2>
+  <div id="main-container"></div>
+  <table>
+    <ul id="peliculas"></ul>
+  </table>
+
+   </div>
+
+  <h2>Rentar Película:</h2>
+  <form onsubmit="event.preventDefault(); rentarPelicula();">
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" required>
+
+    <label for="genero">Género:</label>
+    <input type="text" id="genero" required>
+
+    <button type="submit">Rentar</button>
+  </form>
+
+  <script>
+    // Mostrar las películas disponibles al cargar la página
+    mostrarPeliculas();
+  </script>
+</body>
+</html>
